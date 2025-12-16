@@ -15,6 +15,7 @@ return {
                 ensure_installed = {
                     "lua_ls", -- lua LSP
                     "pyright", -- Python LSP
+                    "rust_analyzer", -- Rust LSP
                     "html", -- html LSP
                     "cssls", -- css LSP
                     "emmet_ls", -- emmet LSP
@@ -76,6 +77,37 @@ return {
                             autoSearchPaths = true,
                             useLibraryCodeForTypes = true,
                             diagnosticMode = "workspace",
+                        },
+                    },
+                },
+            }
+
+            -- Rust LSP
+            vim.lsp.config.rust_analyzer = {
+                cmd = { "rust-analyzer" },
+                filetypes = { "rust" },
+                root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+                capabilities = capabilities,
+                on_attach = on_attach,
+                settings = {
+                    ["rust-analyzer"] = {
+                        imports = {
+                            granularity = {
+                                group = "module",
+                            },
+                            prefix = "self",
+                        },
+                        cargo = {
+                            buildScripts = {
+                                enable = true,
+                            },
+                        },
+                        procMacro = {
+                            enable = true,
+                        },
+                        checkOnSave = true,
+                        check = {
+                            command = "clippy",
                         },
                     },
                 },
