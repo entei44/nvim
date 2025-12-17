@@ -86,7 +86,7 @@ return {
             vim.lsp.config.rust_analyzer = {
                 cmd = { "rust-analyzer" },
                 filetypes = { "rust" },
-                root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+                root_markers = { "Cargo.toml", ".git" },
                 capabilities = capabilities,
                 on_attach = on_attach,
                 settings = {
